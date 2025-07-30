@@ -1,6 +1,7 @@
 package com.foneloantest.bankservice.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
@@ -17,21 +18,19 @@ import java.util.Set;
 @RequiredArgsConstructor
 @NoArgsConstructor
 
-public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(name = "username", nullable = false, unique = true)
+public class User extends AbstractEntity{
+    @Column(name = "username", unique = true)
+    @NotBlank(message = "The username cannot be blank")
     private String username;
 
-    @Column(name= "fullname", nullable = false)
+    @Column(name= "fullname")
     private String fullName;
 
     @Column(name = "email", nullable = false)
     private String email;
 
     @Column(name = "password")
+    @NotBlank
     private String password;
 
     @Column(name = "created_date")

@@ -28,14 +28,14 @@ public class BankServiceApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        // 1. Ensure GOD Role exists
+        // Ensure GOD Role exists
         Role godRole = roleRepository.findByName("GOD").orElseGet(() -> {
             Role newRole = new Role();
             newRole.setName("GOD");
             return roleRepository.save(newRole);
         });
 
-        // 3. Create GOD user if not exists
+        // Create GOD user if not exists
         String godUsername = "superadmin";
         if (userRepository.findByUsername(godUsername).isEmpty()) {
             User godUser = new User();
